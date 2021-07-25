@@ -1,0 +1,21 @@
+header {
+    text-align: center;
+}
+
+main {
+    text-align: center;
+}
+
+.hint {
+    display: flex;
+}
+
+#record {
+    padding-left: 50px;
+    padding-right: 55px;
+}
+
+#log {
+    padding-left: 130px;
+    padding-right: 130px;
+}
