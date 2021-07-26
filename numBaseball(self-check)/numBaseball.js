@@ -76,18 +76,17 @@ const onSubmit = (event) => {
         }
     }
     if (strike === 0 && ball === 0) {
+        $log.append('맞는 숫자가 없네요. OUT 입니다', document.createElement('br'));
         out += 1;
         console.log(out);
+    } else {
+        $log.append(`${strike} 스트라이크 ${ball} 볼`, document.createElement('br'));
     }
+    // todo: 몇 아웃인지도 알릴수 있다면 좋겠다.
     if (out === 3) {
         const outMassage = document.createTextNode(`3아웃!! 패배!! 정답은 ${answer.join('')} 입니다`);
         $log.appendChild(outMassage);
         return;
-    }
-    if (strike === 0 && ball === 0) {
-        $log.append('맞는 숫자가 없네요. OUT 입니다', document.createElement('br'));
-    } else {
-        $log.append(`${strike} 스트라이크 ${ball} 볼`, document.createElement('br'));
     }
     $record.append(`${value}`, document.createElement('br')); // 입력했던 숫자 기록
     tries.push(value);
