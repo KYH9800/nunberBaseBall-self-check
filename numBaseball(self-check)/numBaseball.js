@@ -79,7 +79,7 @@ const onSubmit = (event) => {
         out += 1;
         console.log(out);
     }
-    if (out > 3) {
+    if (out === 3) {
         const outMassage = document.createTextNode(`3아웃!! 패배!! 정답은 ${answer.join('')} 입니다`);
         $log.appendChild(outMassage);
         return;
