@@ -20,6 +20,10 @@ for (let n = 0; n < 4; n += 1) {
 }
 console.log("answer: ", answer);
 
+function defeated() { // 패배를 알리는 함수
+    const massage = document.createTextNode(`패배!! 정답은 ${answer.join('')} 입니다`);
+    $log.appendChild(massage);
+}
 /* user */
 // 콜백(리스너) 함수
 let tries = [];
@@ -55,8 +59,7 @@ const onSubmit = (event) => {
     }
     // 기회는 10번
     if (tries.length >= 9) {
-        const massage = document.createTextNode(`패배!! 정답은 ${answer.join('')} 입니다`);
-        $log.appendChild(massage);
+        defeated(); // 패배를 알리는 함수
         $record.append(`${value}`);
         return;
     }
@@ -75,6 +78,10 @@ const onSubmit = (event) => {
             }
         }
     }
+    if (out === 3) {
+        defeated(); // 패배를 알리는 함수
+        return;
+    }
     if (strike === 0 && ball === 0) {
         $log.append('맞는 숫자가 없네요. OUT 입니다', document.createElement('br'));
         out += 1;
@@ -83,11 +90,6 @@ const onSubmit = (event) => {
         $log.append(`${strike} 스트라이크 ${ball} 볼`, document.createElement('br'));
     }
     // todo: 몇 아웃인지도 알릴수 있다면 좋겠다.
-    if (out === 3) {
-        const outMassage = document.createTextNode(`3아웃!! 패배!! 정답은 ${answer.join('')} 입니다`);
-        $log.appendChild(outMassage);
-        return;
-    }
     $record.append(`${value}`, document.createElement('br')); // 입력했던 숫자 기록
     tries.push(value);
 }
