@@ -6,10 +6,13 @@ const $log = document.querySelector('#log');
 
 /* PC */
 // 제공된 숫자 범위를 배열에 1~9까지 만들어 담는다
-let numbers = []; // 1~9까지의 숫자를 제공
-for (let i = 0; i < 10; i++) {
-    numbers.push(i);
-}
+// todo: Array(), fill(), map()
+let numbers = Array(10).fill(0).map((ele, idx) => {
+    return idx;
+}); // 1~9까지의 숫자를 제공
+// for (let i = 0; i < 10; i++) {
+//     numbers.push(i);
+// }
 // 4개의 숫자를 무작위로 뽑아 배열에 담는다
 let answer = []; // pc가 뽑은 4자리의 숫자 배열
 for (let n = 0; n < 4; n += 1) {
@@ -20,7 +23,6 @@ for (let n = 0; n < 4; n += 1) {
 }
 console.log("answer: ", answer);
 
-// todo: 반복코드를 줄이기 위한 함수
 function defeated() { // 패배를 알리는 함수
     const massage = document.createTextNode(`패배!! 정답은 ${answer.join('')} 입니다`);
     $log.appendChild(massage);
@@ -66,19 +68,29 @@ const onSubmit = (event) => {
     }
     // todo: 몇 스트라이크 몇 볼인지 검사하기
     // todo: self-check >> you have to make out rules
+
+    // todo: forEach
     let strike = 0;
     let ball = 0;
 
-    for (let i = 0; i < answer.length; i++) {
-        const index = value.indexOf(answer[i]);
+    /** 반복문을 대체하는 배열 메서드 forEach
+     * answer의 배열에 각각 적용하는 메서드
+     * 요소를(element) 하나씩 받아온다.
+     * 받아온 요소(element)의 index 자리도 받아온다
+     */
+    // ex: answer = [ 3146 ];
+    // ex: value = [ 3214 ];
+    answer.forEach((element, idx) => {
+        const index = value.indexOf(element);
         if (index > -1) { // index가 존재하는가? (일치하는 숫자 발견)
-            if (index === i) { // 자릿수도 동일 (스트라이크)
+            if (index === idx) { // 자릿수도 동일 (스트라이크)
                 strike += 1;
             } else { // ball
                 ball += 1;
             }
         }
-    }
+    });
+    // for (let i = 0; i < answer.length; i++) {}
     if (out === 3) {
         defeated(); // 패배를 알리는 함수
         return;
