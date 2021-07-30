@@ -7,8 +7,10 @@ const $log = document.querySelector('#log');
 /* PC */
 // 제공된 숫자 범위를 배열에 1~9까지 만들어 담는다
 // todo: Array(), fill(), map()
+// Array(10) [].length === 10;
+// Array(10).fill(0) [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 let numbers = Array(10).fill(0).map((ele, idx) => {
-    return idx;
+    return idx; // [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 }); // 1~9까지의 숫자를 제공
 // for (let i = 0; i < 10; i++) {
 //     numbers.push(i);
